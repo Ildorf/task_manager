@@ -1,0 +1,22 @@
+.media
+  .media-left.task-left
+    p = @task_presenter.id
+    p = render 'web/tasks/state', task: @task_presenter
+  .media-body
+    .media-heading
+      = @task_presenter.name
+      .pull-right
+        => link_to 'Edit', admin? ? edit_admin_task_path(@task_presenter.id) : edit_task_path(@task_presenter.id)
+        => link_to 'Delete', admin? ? admin_task_path(@task_presenter.id) : task_path(@task_presenter.id), method: :delete, data: { confirm: "Are you sure?" }
+    p = @task_presenter.description
+    - if @task_presenter.attachment.image?
+      .attachment
+        = image_tag(@task_presenter.attachment.url)
+    - else
+      .attachment
+        = link_to @task_presenter.attachment.name, @task_presenter.attachment.url if @task_presenter.attachment.present?
+    - if admin?
+      .pull-left
+        = @task_presenter.user
+    .pull-right
+      p.timestamp = @task_presenter.created_at

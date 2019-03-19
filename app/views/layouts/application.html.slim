@@ -1,0 +1,26 @@
+doctype html
+html
+  head
+    title Task Manager
+
+    = csrf_meta_tags
+    = csp_meta_tag
+
+    = stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track': 'reload'
+    = javascript_include_tag 'application', 'data-turbolinks-track': 'reload'
+
+  body
+    nav.navbar.navbar-default
+      = link_to 'Task Manager', root_path, class: 'navbar-brand'
+      ul.nav.navbar-nav
+        - if signed_in?
+          li
+            = link_to 'Dashboard', admin? ? admin_dashboard_index_path : dashboard_index_path
+          li
+            = link_to 'New Task', admin? ? new_admin_task_path : new_task_path
+      .pull-right
+        - if signed_in?
+          a.btn.btn-default.navbar-btn type="button" data-method="delete" href=(session_path) Sign out
+        - else
+          a.btn.btn-default.navbar-btn type="button" href=(new_session_path) Sign in
+    == yield

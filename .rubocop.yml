@@ -1,0 +1,30 @@
+AllCops:
+  Exclude:
+    - 'db/**/*'
+    - 'config/**/*'
+    - 'Gemfile*'
+    - 'tmp/**/*'
+    - 'vendor/**/*'
+    - 'bin/**/*'
+    - 'spec/*'
+  CacheRootDirectory: tmp
+
+# Style
+Style/Documentation:
+  Enabled: false
+Style/FrozenStringLiteralComment:
+  Enabled: false
+Style/ClassAndModuleChildren:
+  Enabled: false
+
+# Metrics
+Metrics/LineLength:
+  Max: 120
+Metrics/BlockLength:
+  Exclude:
+    - spec/**/*
+
+# Naming
+Naming/PredicateName:
+  Exclude:
+    - lib/ext/presenter.rb

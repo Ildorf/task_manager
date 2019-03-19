@@ -1,0 +1,21 @@
+language: ruby
+sudo: false
+cache: bundler
+rvm:
+- 2.4.1
+services:
+- postgresql
+before_script:
+- bundle exec rake db:create
+- bundle exec rake db:migrate
+before_install:
+- gem update --system
+- gem update --remote bundler
+script:
+- bundle exec rubocop
+- bundle exec rspec
+deploy:
+  provider: heroku
+  api_key:
+    secure: q4LEusYbNgIzTiptaWFP4+te4fnGkaKopKID/ZLG2l34dYWkvjrwgKv3Uy3DQiP+Kwlz0DPzCEhqAkqV6ZNu19ZeyzieAk3KMUH25dryDozPw7zYbyF29vLcyqxOtIa1+QoeGbFgNm6I7Y4q1SVsiX8FLiGPyQo/J8NEaIptLhu0yp6VpRmdj2DL0SUW/OEwe2fL/LZBELW5LMgtzyw9abbeqYzDfgA0CxJYZXIFjZGXMWMyssEfhwfd7HBrkMdArC3StrDYqPL1F1yxD9wWPbyWJWDsyC3CTXIpcZpZLvOAFVtdc5Lu8uhCU6k2wEtJ9sHFaY8qZEr4fm4cH4mVOLdqTKVIaRyUW9yF5eNkeXWE8WVeGE7bxNN0tWG0VX/5TmYJkXNQDp1emFq85BpTNesvrdzXQKOewPM4O2qsYy1JI6qL3n3ugNfXUxd+PNHKycWdpucO4Kv33pwGoP06hGCTcXyjSThTwHTIFXdbTfEBgNktoFOngsmO9v9I6qEPB3ZulLCEZx9oMGi8LeLhCQ7kGDoj2frFqs3XwQ26tNHzzoIcVJhldF/UAdSvAMtGk86Xk5bv1sKtCVr6owKaHli1k40VN3CLC/tQRTJVKekkBSrse32ZQhToHtsSml1FcxLqi41bg5UiHutv9lMTBpfoE2m9yUsElnV6AvGSmG4=
+  app: simple-task-manager-0

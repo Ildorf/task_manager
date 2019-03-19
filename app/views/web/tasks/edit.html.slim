@@ -1,0 +1,2 @@
+h4 Edit Task
+= render 'web/tasks/form', action_path: admin? ? admin_task_path(@task.id) : task_path(@task.id), method: :put

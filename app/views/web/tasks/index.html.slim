@@ -1,0 +1,9 @@
+- @task_presenters.each do |task|
+  .media
+    .media-left.task-left
+      = task.id
+    .media-body
+      h4.media-heading = task.name
+      = task.user
+      .pull-right
+        p.timestamp = task.created_at

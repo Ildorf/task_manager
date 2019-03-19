@@ -1,0 +1,17 @@
+- @task_presenters.each do |task|
+  .media
+    .media-left.task-left
+      p = link_to task.id, admin? ? admin_task_path(task.id) : task_path(task.id)
+      p = render 'web/tasks/state', task: task
+    .media-body
+      .media-heading
+        = task.name
+        .pull-right
+          => link_to 'Edit', admin? ? edit_admin_task_path(task.id) : edit_task_path(task.id)
+          => link_to 'Delete', admin? ? admin_task_path(task.id) : task_path(task.id), method: :delete, data: { confirm: "Are you sure?" }
+      p = task.description
+      - if admin?
+        .pull-left
+          = task.user
+      .pull-right
+        p.timestamp = task.created_at

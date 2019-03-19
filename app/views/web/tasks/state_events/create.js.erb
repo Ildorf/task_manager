@@ -1,0 +1,6 @@
+<% if @form.errors.present? %>
+  alert('<%= @form.errors.full_messages.join("\n") %>')
+<% else %>
+  element = document.getElementById('task_state_' + '<%= @task_presenter.id %>');
+  element.innerHTML = '<%= j render 'web/tasks/state', task: @task_presenter %>'
+<% end %>

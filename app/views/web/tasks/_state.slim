@@ -1,0 +1,4 @@
+.task-state id=("task_state_#{task.id}")
+  p = task.state
+  - task.state_events.each do |event|
+    => link_to event, task_state_event_path(task.id, format: :js, event: { name: event }), method: :post, remote: true, class: 'event-link'
